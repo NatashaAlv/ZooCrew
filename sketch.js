@@ -52,8 +52,9 @@ function init(){
   loader.load('models/animals/giraffe.glb', (gltf) => {
   giraffeModel = gltf.scene;
   giraffeModel.scale.set(1,1,1);
-  // currentModel = giraffeModel;
-  // scene.add(giraffeModel);
+  currentModel = giraffeModel;
+  scene.add(giraffeModel);
+  centerModelCamera(giraffeModel);
 }, undefined, (error) => {
   console.error('Error loading giraffe model:', error);
 });
@@ -102,6 +103,20 @@ function switchModel(newModel){
 
   currentModel = newModel;
   scene.add(currentModel);
+  centerModelCamera(currentModel);
+}
+
+function centerModelCamera(model){
+  const box = new THREE.Box3().setFromObject(model);
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const fov = camera.fov * (Math.PI / 180);
+  let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+  camera.position.set(center.x, center.y, center.z + cameraZ);
+  controls.target.copy(center);
+  controls.update();
 }
 
 function animate(){
