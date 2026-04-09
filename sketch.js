@@ -46,16 +46,20 @@ function init(){
 
   // Load models
   loader.load('models/test/cat.glb', (gltf) => {
-    catModel = gltf.scene;
-    catModel.scale.set(1,1,1);
-    currentModel = catModel;
-    scene.add(catModel);
-  });
+  catModel = gltf.scene;
+  catModel.scale.set(1,1,1);
+  currentModel = catModel;
+  scene.add(catModel);
+}, undefined, (error) => {
+  console.error('Error loading cat model:', error);
+});
 
-  loader.load('models/animals/shark.glb', (gltf) => {
-    sharkModel = gltf.scene;
-    sharkModel.scale.set(1,1,1);
-  });
+loader.load('models/animals/shark.glb', (gltf) => {
+  sharkModel = gltf.scene;
+  sharkModel.scale.set(1,1,1);
+}, undefined, (error) => {
+  console.error('Error loading shark model:', error);
+});
 
   // UI elements
   colorPicker = document.getElementById("furColor");
