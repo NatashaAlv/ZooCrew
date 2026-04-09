@@ -61,7 +61,7 @@ function init(){
 
 loader.load('models/animals/shark.glb', (gltf) => {
   sharkModel = gltf.scene;
-  sharkModel.scale.set(0.5,0.5,0.5);
+  sharkModel.scale.set(1,1,1);
 }, undefined, (error) => {
   console.error('Error loading shark model:', error);
 });
