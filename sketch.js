@@ -65,7 +65,7 @@ loader.load('models/animals/shark.glb', (gltf) => {
   console.error('Error loading shark model:', error);
 });
 
-loader.load('models/animals/monkey.glb', (gltf) => {
+loader.load('models/animals/giraffeTwo.glb', (gltf) => {
   monkeyModel = gltf.scene;
   monkeyModel.scale.set(1,1,1);
 }, undefined, (error) => {
