@@ -51,7 +51,7 @@ function init(){
   // Load models
   loader.load('models/animals/giraffe.glb', (gltf) => {
   giraffeModel = gltf.scene;
-  giraffeModel.scale.set(1,1,1);
+  giraffeModel.scale.set(0.5,0.5,0.5);
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
@@ -61,14 +61,14 @@ function init(){
 
 loader.load('models/animals/shark.glb', (gltf) => {
   sharkModel = gltf.scene;
-  sharkModel.scale.set(1,1,1);
+  sharkModel.scale.set(0.5,0.5,0.5);
 }, undefined, (error) => {
   console.error('Error loading shark model:', error);
 });
 
 loader.load('models/animals/monkey.glb', (gltf) => {
   monkeyModel = gltf.scene;
-  monkeyModel.scale.set(1,1,1);
+  monkeyModel.scale.set(0.5,0.5,0.5);
 }, undefined, (error) => {
   console.error('Error loading monkey model:', error);
 });
