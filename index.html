@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Character Creator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="container" id="anml">
+      <nav>
+        <div id="label">Animal</div>
+        
+        <button id="catButton">Cat</button>
+        <button id="sharkButton">Shark</button>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <div class="container" id="left">
+      <div id="title">Character Creator</div>
+
+      <div id="base">
+        <button class="tab" id="clr">Color</button>
+        
+        <input type="color" id="furColor" value="#00ffff">
+      </div>
+
+      <div id="accssr">
+        <button class="tab" id="fc">Face</button>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" id="scale">
+      <div id="label">Size</div>
+
+      <input type="range" id="sizeSlider" min="0.5" max="3" step="0.1" value="1">
+    </div>
+  </footer>
+
+
+  
+  <!-- <div id="clr">
+  <h2>Character Creator</h2>
+
+  <label>Fur Color</label>
+  <input type="color" id="furColor" value="#ff9900"> -->
+
+  <!-- <div id="animal">
+    <label>Choose Character</label><br>
+    
+    <button id="catButton">Cat</button>
+    <button id="sharkButton">Shark</button>
+  </div> -->
+
+  <!-- <div id="scale">
+    <label>Size</label>
+    <input type="range" id="sizeSlider" min="0.5" max="3" step="0.1" value="1">
+  </div> -->
+
+<script src="sketch.js"></script>
+
+</body>
+</html>
