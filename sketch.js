@@ -52,8 +52,8 @@ function init(){
   loader.load('models/animals/giraffe.glb', (gltf) => {
   giraffeModel = gltf.scene;
   giraffeModel.scale.set(1,1,1);
-  currentModel = giraffeModel;
-  scene.add(giraffeModel);
+  // currentModel = giraffeModel;
+  // scene.add(giraffeModel);
 }, undefined, (error) => {
   console.error('Error loading giraffe model:', error);
 });
