@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 let scene, camera, renderer, controls;
 let loader;
 
-let catModel, sharkModel;
+let giraffeModel, sharkModel;
 let currentModel;
 
 let colorPicker;
@@ -49,13 +49,13 @@ function init(){
   loader = new GLTFLoader();
 
   // Load models
-  loader.load('models/test/cat.glb', (gltf) => {
-  catModel = gltf.scene;
-  catModel.scale.set(1,1,1);
-  currentModel = catModel;
-  scene.add(catModel);
+  loader.load('models/animals/giraffe.glb', (gltf) => {
+  giraffeModel = gltf.scene;
+  giraffeModel.scale.set(1,1,1);
+  currentModel = giraffeModel;
+  scene.add(giraffeModel);
 }, undefined, (error) => {
-  console.error('Error loading cat model:', error);
+  console.error('Error loading giraffe model:', error);
 });
 
 loader.load('models/animals/shark.glb', (gltf) => {
@@ -70,8 +70,8 @@ loader.load('models/animals/shark.glb', (gltf) => {
   sizeSlider = document.getElementById("sizeSlider");
 
   // Buttons
-  document.getElementById("catButton").onclick = () => {
-    switchModel(catModel);
+  document.getElementById("giraffeButton").onclick = () => {
+    switchModel(giraffeModel);
   };
 
   document.getElementById("sharkButton").onclick = () => {
