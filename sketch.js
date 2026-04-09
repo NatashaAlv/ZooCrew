@@ -38,10 +38,10 @@ function init(){
   controls = new OrbitControls(camera, renderer.domElement);
 
   // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
   scene.add(ambientLight);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
   dirLight.position.set(0.5, 1, -0.5);
   scene.add(dirLight);
 
@@ -107,7 +107,7 @@ function animate(){
 
     currentModel.traverse((child) => {
       if (child.isMesh){
-        child.material.color = color;
+        child.material.color.copy(color);
       }
     });
   }
