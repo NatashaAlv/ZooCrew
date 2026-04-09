@@ -1,0 +1,100 @@
+/* body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial;
+}
+
+#ui{
+position:absolute;
+top:20px;
+left:20px;
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+button {
+  padding: 6px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+} */
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial;
+}
+
+/* General container style */
+.container{
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* ---------- HEADER ---------- */
+/* Top middle */
+header{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#anml{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* ---------- LEFT SECTION ---------- */
+/* Left sidebar that fills height */
+section{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+}
+
+#left{
+  height: 100%;
+  width: 180px;
+}
+
+
+/* ---------- FOOTER ---------- */
+/* Bottom center */
+footer{
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#scale{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* ---------- UI ELEMENTS ---------- */
+
+button{
+  padding: 6px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+#title{
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.tab{
+  margin-bottom: 10px;
+  display: block;
+}
