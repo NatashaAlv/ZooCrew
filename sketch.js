@@ -49,7 +49,7 @@ function init(){
   loader = new GLTFLoader();
 
   // Load models
-  loader.load('models/animals/giraffe.glb', (gltf) => {
+  loader.load('models/animals/monkeyTwo.glb', (gltf) => {
   giraffeModel = gltf.scene;
   giraffeModel.scale.set(1,1,1);
   // currentModel = giraffeModel;
