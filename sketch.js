@@ -119,6 +119,9 @@ function animate(){
     currentModel.traverse((child) => {
       if (child.isMesh){
         child.material.color.copy(color);
+        child.material.emissive.setHex(0x000000);
+        child.material.metalness = 0;
+        child.material.roughness = 0.5;
       }
     });
   }
