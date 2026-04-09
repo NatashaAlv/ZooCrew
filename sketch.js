@@ -1,67 +1,115 @@
-let catModel;
-let sharkModel;
+let scene, camera, renderer, controls;
+let loader;
 
+let catModel, sharkModel;
 let currentModel;
-
-let rotX = 0;
-let rotY = 0;
 
 let colorPicker;
 let sizeSlider;
 
-function preload(){
+init();
+animate();
 
-// load the OBJ model
-catModel = loadModel('catV1.obj', true);
-sharkModel = loadModel('sharkie_V1.obj', true);
+function init(){
 
-}
+  // Scene
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xdcdcdc);
 
-function setup(){
+  // Camera
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.set(0, 1, 5);
 
-createCanvas(windowWidth, windowHeight, WEBGL);
+  // Renderer
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-colorPicker = document.getElementById("furColor");
-sizeSlider = document.getElementById("sizeSlider");
+  // Controls (orbit like p5)
+  controls = new OrbitControls(camera, renderer.domElement);
 
-currentModel = catModel;
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
 
-// Button controls
-document.getElementById("catButton").onclick = () => {
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(0.5, 1, -0.5);
+  scene.add(dirLight);
+
+  // Loader
+  loader = new GLTFLoader();
+
+  // Load models
+  loader.load('models/test/cat.glb', (gltf) => {
+    catModel = gltf.scene;
+    catModel.scale.set(1,1,1);
     currentModel = catModel;
-};
+    scene.add(catModel);
+  });
 
-document.getElementById("sharkButton").onclick = () => {
-    currentModel = sharkModel;
-};
+  loader.load('models/animals/shark.glb', (gltf) => {
+    sharkModel = gltf.scene;
+    sharkModel.scale.set(1,1,1);
+  });
 
+  // UI elements
+  colorPicker = document.getElementById("furColor");
+  sizeSlider = document.getElementById("sizeSlider");
+
+  // Buttons
+  document.getElementById("catButton").onclick = () => {
+    switchModel(catModel);
+  };
+
+  document.getElementById("sharkButton").onclick = () => {
+    switchModel(sharkModel);
+  };
+
+  window.addEventListener('resize', onWindowResize);
 }
 
-function draw(){
+// Switch model (same behavior as p5 currentModel)
+function switchModel(newModel){
+  if (!newModel) return;
 
-background(220);
+  if (currentModel){
+    scene.remove(currentModel);
+  }
 
-orbitControl(); // mouse rotation
-
-ambientLight(150);
-directionalLight(255,255,255,0.5,1,-0.5);
-
-let c = colorPicker.value;
-let size = sizeSlider.value;
-
-push();
-
-scale(size * 50); // increase model size if needed
-normalMaterial();
-fill(c);
-
-// model(catModel);
-model(currentModel);
-
-pop();
-
+  currentModel = newModel;
+  scene.add(currentModel);
 }
 
-function windowResized(){
-resizeCanvas(windowWidth, windowHeight);
+function animate(){
+  requestAnimationFrame(animate);
+
+  if (currentModel){
+
+    // Scale (same as slider)
+    let size = sizeSlider.value;
+    currentModel.scale.set(size, size, size);
+
+    // Color
+    let color = new THREE.Color(colorPicker.value);
+
+    currentModel.traverse((child) => {
+      if (child.isMesh){
+        child.material.color = color;
+      }
+    });
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+function onWindowResize(){
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
