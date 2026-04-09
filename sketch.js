@@ -1,7 +1,3 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.152.2/+esm";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js";
-
 let scene, camera, renderer, controls;
 let loader;
 
