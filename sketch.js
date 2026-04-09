@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 let scene, camera, renderer, controls;
 let loader;
 
-let giraffeModel, sharkModel;
+let giraffeModel, sharkModel, monkeyModel;
 let currentModel;
 
 let colorPicker;
@@ -65,6 +65,13 @@ loader.load('models/animals/shark.glb', (gltf) => {
   console.error('Error loading shark model:', error);
 });
 
+loader.load('models/animals/monkey.glb', (gltf) => {
+  monkeyModel = gltf.scene;
+  monkeyModel.scale.set(1,1,1);
+}, undefined, (error) => {
+  console.error('Error loading monkey model:', error);
+});
+
   // UI elements
   colorPicker = document.getElementById("furColor");
   sizeSlider = document.getElementById("sizeSlider");
@@ -76,6 +83,10 @@ loader.load('models/animals/shark.glb', (gltf) => {
 
   document.getElementById("sharkButton").onclick = () => {
     switchModel(sharkModel);
+  };
+
+  document.getElementById("monkeyButton").onclick = () => {
+    switchModel(monkeyModel);
   };
 
   window.addEventListener('resize', onWindowResize);
