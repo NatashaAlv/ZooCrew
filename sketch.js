@@ -159,7 +159,7 @@ loader.load('models/items/pepsi.glb', (gltf) => {
 
   pepsiModel = modelGroup;
   pepsiModel.scale.set(0.2, 0.2, 0.2);
-  pepsiModel.position.set(-2, 0, 0);
+  pepsiModel.position.set(2, 0, 0);
 }, undefined, (error) => {
   console.error('Error loading pepsi model:', error);
 });
