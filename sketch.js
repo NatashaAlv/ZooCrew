@@ -249,11 +249,11 @@ faceNames.forEach((faceName, index) => {
   };
 
   // Face buttons
-  document.getElementById("face1Button").onclick = () => switchFace('faceOne');
-  document.getElementById("face2Button").onclick = () => switchFace('faceTwo');
-  document.getElementById("face3Button").onclick = () => switchFace('faceThree');
-  document.getElementById("face4Button").onclick = () => switchFace('faceFour');
-  document.getElementById("face5Button").onclick = () => switchFace('faceFive');
+  document.getElementById("face1Button").onclick = () => toggleFace('faceOne');
+  document.getElementById("face2Button").onclick = () => toggleFace('faceTwo');
+  document.getElementById("face3Button").onclick = () => toggleFace('faceThree');
+  document.getElementById("face4Button").onclick = () => toggleFace('faceFour');
+  document.getElementById("face5Button").onclick = () => toggleFace('faceFive');
 
   window.addEventListener('resize', onWindowResize);
 
@@ -370,6 +370,16 @@ function toggleItem(itemName) {
   }
 }
 
+function toggleFace(faceName) {
+  // If this face is already active, turn it off
+  if (currentFace === faceName) {
+    switchFace(null);
+  } else {
+    // Otherwise, switch to this face
+    switchFace(faceName);
+  }
+}
+
 function switchFace(faceName) {
   // Remove current face if exists
   if (currentFace && faceSprites[currentFace] && faceOwnerModel) {
@@ -384,7 +394,7 @@ function switchFace(faceName) {
   }
 
   // Add new face (parent to animal so it rotates with it)
-  if (faceSprites[faceName]) {
+  if (faceName && faceSprites[faceName]) {
     console.log('Adding face:', faceName);
     currentModel.add(faceSprites[faceName]);
     currentFace = faceName;
@@ -396,7 +406,7 @@ function switchFace(faceName) {
                      faceName === 'faceThree' ? 'face3Button' :
                      faceName === 'faceFour' ? 'face4Button' : 'face5Button';
     document.getElementById(buttonId).classList.add('active');
-  } else {
+  } else if (faceName) {
     console.warn('Face sprite not found:', faceName);
   }
 }
