@@ -31,20 +31,6 @@ const itemPositions = {
   }
 };
 
-// Animal rotations (in radians) and Y offsets
-const modelConfigs = {
-  giraffe: { rotationX: 0, rotationY: 0, rotationZ: 0, yOffset: 0 },
-  shark: { rotationX: 0, rotationY: 0, rotationZ: 0, yOffset: 0 },
-  monkey: { rotationX: 0, rotationY: 0, rotationZ: 0, yOffset: 0 },
-  flamingo: { rotationX: 0, rotationY: 0, rotationZ: 0, yOffset: 0 },
-  lion: { rotationX: 0, rotationY: 0, rotationZ: 0, yOffset: 0 }
-};
-    monkey: { x: 2, y: 0, z: 0 },
-    flamingo: { x: 2, y: 0, z: 0 },
-    lion: { x: 2, y: 0, z: 0 }
-  }
-};
-
 let colorPicker;
 let sizeSlider;
 
@@ -99,12 +85,6 @@ function init(){
   giraffeModel.scale.set(0.5,0.5,0.5);
   modelScales['giraffe'] = 0.5;
   currentModel = giraffeModel;
-
-  // Apply giraffe rotation and Y offset
-  const giraffeConfig = modelConfigs['giraffe'];
-  giraffeModel.rotation.set(giraffeConfig.rotationX, giraffeConfig.rotationY, giraffeConfig.rotationZ);
-  giraffeModel.position.y = giraffeConfig.yOffset;
-
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
 }, undefined, (error) => {
@@ -273,18 +253,6 @@ function switchModel(newModel){
 
   currentModel = newModel;
   scene.add(currentModel);
-
-  // Apply rotation and Y offset based on model
-  let animalName = 'giraffe';
-  if (newModel === sharkModel) animalName = 'shark';
-  else if (newModel === monkeyModel) animalName = 'monkey';
-  else if (newModel === flamingoModel) animalName = 'flamingo';
-  else if (newModel === lionModel) animalName = 'lion';
-
-  const config = modelConfigs[animalName];
-  currentModel.rotation.set(config.rotationX, config.rotationY, config.rotationZ);
-  currentModel.position.y = config.yOffset;
-
   centerModelCamera(currentModel);
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
