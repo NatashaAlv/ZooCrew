@@ -8,6 +8,8 @@ let baseCameraY = 1;
 
 let giraffeModel, sharkModel, monkeyModel, flamingoModel, lionModel;
 let currentModel;
+let maceModel, pepsiModel;
+let activeItems = {};
 const initialScales = {};
 const modelScales = {};
 
@@ -129,6 +131,37 @@ loader.load('models/animals/lion.glb', (gltf) => {
   modelScales['lion'] = 0.5;
 }, undefined, (error) => {
   console.error('Error loading lion model:', error);
+});
+
+// Load item models
+loader.load('models/items/mace.glb', (gltf) => {
+  const modelGroup = new THREE.Group();
+  modelGroup.add(gltf.scene);
+
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const center = box.getCenter(new THREE.Vector3());
+  gltf.scene.position.sub(center);
+
+  maceModel = modelGroup;
+  maceModel.scale.set(0.2, 0.2, 0.2);
+  maceModel.position.set(-2, 0, 0);
+}, undefined, (error) => {
+  console.error('Error loading mace model:', error);
+});
+
+loader.load('models/items/pepsi.glb', (gltf) => {
+  const modelGroup = new THREE.Group();
+  modelGroup.add(gltf.scene);
+
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const center = box.getCenter(new THREE.Vector3());
+  gltf.scene.position.sub(center);
+
+  pepsiModel = modelGroup;
+  pepsiModel.scale.set(0.2, 0.2, 0.2);
+  pepsiModel.position.set(-2, 0, 0);
+}, undefined, (error) => {
+  console.error('Error loading pepsi model:', error);
 });
 
   // UI elements
