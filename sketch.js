@@ -6,7 +6,7 @@ let scene, camera, renderer, controls;
 let loader;
 let baseCameraY = 1;
 
-let giraffeModel, sharkModel, monkeyModel;
+let giraffeModel, sharkModel, monkeyModel, flamingoModel;
 let currentModel;
 
 let colorPicker;
@@ -82,7 +82,7 @@ loader.load('models/animals/shark.glb', (gltf) => {
   console.error('Error loading shark model:', error);
 });
 
-loader.load('models/animals/monkey.glb', (gltf) => {
+loader.load('models/animals/monkeyNew.glb', (gltf) => {
   const modelGroup = new THREE.Group();
   modelGroup.add(gltf.scene);
 
@@ -94,6 +94,20 @@ loader.load('models/animals/monkey.glb', (gltf) => {
   monkeyModel.scale.set(0.5,0.5,0.5);
 }, undefined, (error) => {
   console.error('Error loading monkey model:', error);
+});
+
+loader.load('models/animals/flamingo.glb', (gltf) => {
+  const modelGroup = new THREE.Group();
+  modelGroup.add(gltf.scene);
+
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const center = box.getCenter(new THREE.Vector3());
+  gltf.scene.position.sub(center);
+
+  flamingoModel = modelGroup;
+  flamingoModel.scale.set(0.5,0.5,0.5);
+}, undefined, (error) => {
+  console.error('Error loading flamingo model:', error);
 });
 
   // UI elements
@@ -111,6 +125,10 @@ loader.load('models/animals/monkey.glb', (gltf) => {
 
   document.getElementById("monkeyButton").onclick = () => {
     switchModel(monkeyModel);
+  };
+
+  document.getElementById("flamingoButton").onclick = () => {
+    switchModel(flamingoModel);
   };
 
   window.addEventListener('resize', onWindowResize);
