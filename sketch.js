@@ -177,7 +177,7 @@ function centerModelCamera(model){
   const size = box.getSize(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = camera.fov * (Math.PI / 180);
-  let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 7;
+  let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 3;
 
   camera.position.set(center.x, baseCameraY, center.z + cameraZ);
   controls.target.set(center.x, baseCameraY, center.z);
