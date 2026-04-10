@@ -67,7 +67,6 @@ function init(){
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
-  document.getElementById("giraffeButton").classList.add('active');
 }, undefined, (error) => {
   console.error('Error loading giraffe model:', error);
 });
@@ -157,6 +156,9 @@ loader.load('models/animals/lion.glb', (gltf) => {
     switchModel(lionModel);
   };
 
+  // Set giraffe as active initially
+  document.getElementById("giraffeButton").classList.add('active');
+
   window.addEventListener('resize', onWindowResize);
 
   // Scroll to move camera up/down with limits
@@ -179,8 +181,6 @@ loader.load('models/animals/lion.glb', (gltf) => {
 function switchModel(newModel){
   if (!newModel) return;
 
-  console.log('Switching model...');
-
   if (currentModel){
     scene.remove(currentModel);
   }
@@ -199,7 +199,6 @@ function switchModel(newModel){
 
   // Add active class to the appropriate button
   if (newModel === giraffeModel) {
-    console.log('Setting giraffe button active');
     document.getElementById("giraffeButton").classList.add('active');
   }
   else if (newModel === sharkModel) document.getElementById("sharkButton").classList.add('active');
