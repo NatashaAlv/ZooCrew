@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 let scene, camera, renderer, controls;
 let loader;
+let baseCameraY = 1;
 
 let giraffeModel, sharkModel, monkeyModel;
 let currentModel;
@@ -115,7 +116,7 @@ loader.load('models/animals/monkey.glb', (gltf) => {
   window.addEventListener('resize', onWindowResize);
 
   // Scroll to move camera up/down with limits
-  const minCameraY = -5;
+  const minCameraY = -3;
   const maxCameraY = 8;
   window.addEventListener('wheel', (event) => {
     event.preventDefault();
@@ -141,6 +142,8 @@ function switchModel(newModel){
   currentModel = newModel;
   scene.add(currentModel);
   centerModelCamera(currentModel);
+  camera.position.y = baseCameraY;
+  controls.target.y = baseCameraY;
   sizeSlider.value = 1;
   currentModel.scale.set(1, 1, 1);
 }
@@ -153,8 +156,8 @@ function centerModelCamera(model){
   const fov = camera.fov * (Math.PI / 180);
   let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 7;
 
-  camera.position.set(center.x, center.y, center.z + cameraZ);
-  controls.target.copy(center);
+  camera.position.set(center.x, baseCameraY, center.z + cameraZ);
+  controls.target.set(center.x, baseCameraY, center.z);
   controls.update();
 }
 
