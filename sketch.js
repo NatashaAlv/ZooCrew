@@ -60,7 +60,7 @@ function init(){
   gltf.scene.position.sub(center);
 
   giraffeModel = modelGroup;
-  giraffeModel.scale.set(0.5,0.5,0.5);
+  giraffeModel.scale.set(1,1,1);
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
@@ -77,7 +77,7 @@ loader.load('models/animals/shark.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   sharkModel = modelGroup;
-  sharkModel.scale.set(0.5,0.5,0.5);
+  sharkModel.scale.set(1,1,1);
 }, undefined, (error) => {
   console.error('Error loading shark model:', error);
 });
@@ -91,7 +91,7 @@ loader.load('models/animals/monkeyNew.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   monkeyModel = modelGroup;
-  monkeyModel.scale.set(0.5,0.5,0.5);
+  monkeyModel.scale.set(1,1,1);
 }, undefined, (error) => {
   console.error('Error loading monkey model:', error);
 });
@@ -105,7 +105,7 @@ loader.load('models/animals/flamingo.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   flamingoModel = modelGroup;
-  flamingoModel.scale.set(0.5,0.5,0.5);
+  flamingoModel.scale.set(1,1,1);
 }, undefined, (error) => {
   console.error('Error loading flamingo model:', error);
 });
