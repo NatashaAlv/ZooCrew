@@ -13,6 +13,24 @@ let activeItems = {};
 const initialScales = {};
 const modelScales = {};
 
+// Item positions relative to each animal
+const itemPositions = {
+  mace: {
+    giraffe: { x: -2, y: 0, z: 0 },
+    shark: { x: -2, y: 0, z: 0 },
+    monkey: { x: -2, y: 0, z: 0 },
+    flamingo: { x: -2, y: 0, z: 0 },
+    lion: { x: -2, y: 0, z: 0 }
+  },
+  pepsi: {
+    giraffe: { x: 2, y: 0, z: 0 },
+    shark: { x: 2, y: 0, z: 0 },
+    monkey: { x: 2, y: 0, z: 0 },
+    flamingo: { x: 2, y: 0, z: 0 },
+    lion: { x: 2, y: 0, z: 0 }
+  }
+};
+
 let colorPicker;
 let sizeSlider;
 
@@ -286,13 +304,22 @@ function toggleItem(itemName) {
 
   if (!item) return;
 
+  // Get current animal name
+  let currentAnimalName = 'giraffe';
+  if (currentModel === sharkModel) currentAnimalName = 'shark';
+  else if (currentModel === monkeyModel) currentAnimalName = 'monkey';
+  else if (currentModel === flamingoModel) currentAnimalName = 'flamingo';
+  else if (currentModel === lionModel) currentAnimalName = 'lion';
+
   if (activeItems[itemName]) {
     // Remove item from scene
     scene.remove(item);
     activeItems[itemName] = false;
     button.classList.remove('active');
   } else {
-    // Add item to scene
+    // Add item to scene with correct position for current animal
+    const pos = itemPositions[itemName][currentAnimalName];
+    item.position.set(pos.x, pos.y, pos.z);
     scene.add(item);
     activeItems[itemName] = true;
     button.classList.add('active');
