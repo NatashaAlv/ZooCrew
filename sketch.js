@@ -168,10 +168,6 @@ function switchModel(newModel){
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
   sizeSlider.value = 1;
-
-  // Reset to initial scale stored on the model
-  const initialScale = newModel.userData.initialScale || 0.5;
-  currentModel.scale.set(initialScale, initialScale, initialScale);
 }
 
 function centerModelCamera(model){
@@ -194,7 +190,8 @@ function animate(){
 
     // Scale (same as slider)
     let size = sizeSlider.value;
-    currentModel.scale.set(size, size, size);
+    const initialScale = currentModel.userData.initialScale || 0.5;
+    currentModel.scale.set(initialScale * size, initialScale * size, initialScale * size);
 
     // Color
     let color = new THREE.Color(colorPicker.value);
