@@ -193,14 +193,14 @@ faceNames.forEach((faceName, index) => {
   textureLoader.load(`models/faces/${faceName}.png`, (texture) => {
     faceTextures[faceName] = texture;
 
-    // Create sprite material and sprite
-    const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
-    const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(2, 2, 1);
-    sprite.position.set(0, 0, 3);
-    sprite.userData.faceName = faceName;
+    // Create plane geometry with face texture
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, 0, 2.5);
+    mesh.userData.faceName = faceName;
 
-    faceSprites[faceName] = sprite;
+    faceSprites[faceName] = mesh;
   });
 });
 
@@ -312,6 +312,19 @@ function switchModel(newModel){
     activeItems['pepsi'] = false;
     document.getElementById("pepsiButton").classList.remove('active');
   }
+
+  // Remove current face when switching animals
+  if (currentFace) {
+    if (faceSprites[currentFace]) {
+      currentModel.remove(faceSprites[currentFace]);
+    }
+    const faceButtonId = currentFace === 'faceOne' ? 'face1Button' :
+                         currentFace === 'faceTwo' ? 'face2Button' :
+                         currentFace === 'faceThree' ? 'face3Button' :
+                         currentFace === 'faceFour' ? 'face4Button' : 'face5Button';
+    document.getElementById(faceButtonId).classList.remove('active');
+    currentFace = null;
+  }
 }
 
 function centerModelCamera(model){
@@ -358,7 +371,7 @@ function toggleItem(itemName) {
 function switchFace(faceName) {
   // Remove current face if exists
   if (currentFace) {
-    scene.remove(faceSprites[currentFace]);
+    currentModel.remove(faceSprites[currentFace]);
     document.getElementById(currentFace === 'faceOne' ? 'face1Button' :
                             currentFace === 'faceTwo' ? 'face2Button' :
                             currentFace === 'faceThree' ? 'face3Button' :
@@ -366,9 +379,9 @@ function switchFace(faceName) {
       .classList.remove('active');
   }
 
-  // Add new face
+  // Add new face (parent to animal so it rotates with it)
   if (faceSprites[faceName]) {
-    scene.add(faceSprites[faceName]);
+    currentModel.add(faceSprites[faceName]);
     currentFace = faceName;
 
     // Add active class to button
