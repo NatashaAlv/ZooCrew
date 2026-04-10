@@ -6,7 +6,7 @@ let scene, camera, renderer, controls;
 let loader;
 let baseCameraY = 1;
 
-let giraffeModel, sharkModel, monkeyModel, flamingoModel;
+let giraffeModel, sharkModel, monkeyModel, flamingoModel, lionModel;
 let currentModel;
 const initialScales = {};
 const modelScales = {};
@@ -116,6 +116,21 @@ loader.load('models/animals/flamingo.glb', (gltf) => {
   console.error('Error loading flamingo model:', error);
 });
 
+loader.load('models/animals/lion.glb', (gltf) => {
+  const modelGroup = new THREE.Group();
+  modelGroup.add(gltf.scene);
+
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const center = box.getCenter(new THREE.Vector3());
+  gltf.scene.position.sub(center);
+
+  lionModel = modelGroup;
+  lionModel.scale.set(0.5,0.5,0.5);
+  modelScales['lion'] = 0.5;
+}, undefined, (error) => {
+  console.error('Error loading lion model:', error);
+});
+
   // UI elements
   colorPicker = document.getElementById("furColor");
   sizeSlider = document.getElementById("sizeSlider");
@@ -135,6 +150,10 @@ loader.load('models/animals/flamingo.glb', (gltf) => {
 
   document.getElementById("flamingoButton").onclick = () => {
     switchModel(flamingoModel);
+  };
+
+  document.getElementById("lionButton").onclick = () => {
+    switchModel(lionModel);
   };
 
   window.addEventListener('resize', onWindowResize);
@@ -197,6 +216,7 @@ function animate(){
     else if (currentModel === sharkModel) initialScale = modelScales['shark'];
     else if (currentModel === monkeyModel) initialScale = modelScales['monkey'];
     else if (currentModel === flamingoModel) initialScale = modelScales['flamingo'];
+    else if (currentModel === lionModel) initialScale = modelScales['lion'];
 
     currentModel.scale.set(initialScale * size, initialScale * size, initialScale * size);
 
