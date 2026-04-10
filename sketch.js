@@ -126,6 +126,7 @@ function switchModel(newModel){
   currentModel = newModel;
   scene.add(currentModel);
   centerModelCamera(currentModel);
+  sizeSlider.value = 1;
 }
 
 function centerModelCamera(model){
