@@ -422,11 +422,18 @@ function animate(){
     let color = new THREE.Color(colorPicker.value);
 
     currentModel.traverse((child) => {
-      if (child.isMesh){
+      if (child.isMesh && child.material.color){
         child.material.color.copy(color);
-        child.material.emissive.setHex(0x000000);
-        child.material.metalness = 0;
-        child.material.roughness = 0.5;
+        // Only set these properties if the material supports them
+        if (child.material.emissive) {
+          child.material.emissive.setHex(0x000000);
+        }
+        if (child.material.metalness !== undefined) {
+          child.material.metalness = 0;
+        }
+        if (child.material.roughness !== undefined) {
+          child.material.roughness = 0.5;
+        }
       }
     });
   }
