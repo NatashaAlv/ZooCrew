@@ -8,6 +8,7 @@ let baseCameraY = 1;
 
 let giraffeModel, sharkModel, monkeyModel, flamingoModel;
 let currentModel;
+const initialScales = {};
 
 let colorPicker;
 let sizeSlider;
@@ -60,7 +61,8 @@ function init(){
   gltf.scene.position.sub(center);
 
   giraffeModel = modelGroup;
-  giraffeModel.scale.set(1,1,1);
+  giraffeModel.scale.set(0.5,0.5,0.5);
+  giraffeModel.userData.initialScale = 0.5;
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
@@ -77,7 +79,8 @@ loader.load('models/animals/shark.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   sharkModel = modelGroup;
-  sharkModel.scale.set(1,1,1);
+  sharkModel.scale.set(0.5,0.5,0.5);
+  sharkModel.userData.initialScale = 0.5;
 }, undefined, (error) => {
   console.error('Error loading shark model:', error);
 });
@@ -91,7 +94,8 @@ loader.load('models/animals/monkeyNew.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   monkeyModel = modelGroup;
-  monkeyModel.scale.set(1,1,1);
+  monkeyModel.scale.set(0.5,0.5,0.5);
+  monkeyModel.userData.initialScale = 0.5;
 }, undefined, (error) => {
   console.error('Error loading monkey model:', error);
 });
@@ -105,7 +109,8 @@ loader.load('models/animals/flamingo.glb', (gltf) => {
   gltf.scene.position.sub(center);
 
   flamingoModel = modelGroup;
-  flamingoModel.scale.set(1,1,1);
+  flamingoModel.scale.set(0.5,0.5,0.5);
+  flamingoModel.userData.initialScale = 0.5;
 }, undefined, (error) => {
   console.error('Error loading flamingo model:', error);
 });
@@ -163,7 +168,10 @@ function switchModel(newModel){
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
   sizeSlider.value = 1;
-  currentModel.scale.set(1, 1, 1);
+
+  // Reset to initial scale stored on the model
+  const initialScale = newModel.userData.initialScale || 0.5;
+  currentModel.scale.set(initialScale, initialScale, initialScale);
 }
 
 function centerModelCamera(model){
