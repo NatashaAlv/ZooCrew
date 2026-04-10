@@ -10,6 +10,9 @@ let giraffeModel, sharkModel, monkeyModel, flamingoModel, lionModel;
 let currentModel;
 let maceModel, pepsiModel;
 let activeItems = {};
+let currentFace = null;
+const faceTextures = {};
+const faceSprites = {};
 const initialScales = {};
 const modelScales = {};
 
@@ -182,6 +185,25 @@ loader.load('models/items/pepsi.glb', (gltf) => {
   console.error('Error loading pepsi model:', error);
 });
 
+// Load face textures
+const textureLoader = new THREE.TextureLoader();
+const faceNames = ['faceOne', 'faceTwo', 'faceThree', 'faceFour', 'faceFive'];
+
+faceNames.forEach((faceName, index) => {
+  textureLoader.load(`models/faces/${faceName}.png`, (texture) => {
+    faceTextures[faceName] = texture;
+
+    // Create sprite material and sprite
+    const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+    const sprite = new THREE.Sprite(spriteMaterial);
+    sprite.scale.set(2, 2, 1);
+    sprite.position.set(0, 0, 3);
+    sprite.userData.faceName = faceName;
+
+    faceSprites[faceName] = sprite;
+  });
+});
+
   // UI elements
   colorPicker = document.getElementById("furColor");
   sizeSlider = document.getElementById("sizeSlider");
@@ -224,6 +246,13 @@ loader.load('models/items/pepsi.glb', (gltf) => {
   document.getElementById("pepsiButton").onclick = () => {
     toggleItem('pepsi');
   };
+
+  // Face buttons
+  document.getElementById("face1Button").onclick = () => switchFace('faceOne');
+  document.getElementById("face2Button").onclick = () => switchFace('faceTwo');
+  document.getElementById("face3Button").onclick = () => switchFace('faceThree');
+  document.getElementById("face4Button").onclick = () => switchFace('faceFour');
+  document.getElementById("face5Button").onclick = () => switchFace('faceFive');
 
   window.addEventListener('resize', onWindowResize);
 
@@ -323,6 +352,31 @@ function toggleItem(itemName) {
     scene.add(item);
     activeItems[itemName] = true;
     button.classList.add('active');
+  }
+}
+
+function switchFace(faceName) {
+  // Remove current face if exists
+  if (currentFace) {
+    scene.remove(faceSprites[currentFace]);
+    document.getElementById(currentFace === 'faceOne' ? 'face1Button' :
+                            currentFace === 'faceTwo' ? 'face2Button' :
+                            currentFace === 'faceThree' ? 'face3Button' :
+                            currentFace === 'faceFour' ? 'face4Button' : 'face5Button')
+      .classList.remove('active');
+  }
+
+  // Add new face
+  if (faceSprites[faceName]) {
+    scene.add(faceSprites[faceName]);
+    currentFace = faceName;
+
+    // Add active class to button
+    const buttonId = faceName === 'faceOne' ? 'face1Button' :
+                     faceName === 'faceTwo' ? 'face2Button' :
+                     faceName === 'faceThree' ? 'face3Button' :
+                     faceName === 'faceFour' ? 'face4Button' : 'face5Button';
+    document.getElementById(buttonId).classList.add('active');
   }
 }
 
