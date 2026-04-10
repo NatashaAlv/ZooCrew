@@ -11,6 +11,7 @@ let currentModel;
 let maceModel, pepsiModel;
 let activeItems = {};
 let currentFace = null;
+let faceOwnerModel = null;
 const faceTextures = {};
 const faceSprites = {};
 const initialScales = {};
@@ -314,9 +315,9 @@ function switchModel(newModel){
   }
 
   // Remove current face when switching animals
-  if (currentFace) {
+  if (currentFace && faceOwnerModel) {
     if (faceSprites[currentFace]) {
-      currentModel.remove(faceSprites[currentFace]);
+      faceOwnerModel.remove(faceSprites[currentFace]);
     }
     const faceButtonId = currentFace === 'faceOne' ? 'face1Button' :
                          currentFace === 'faceTwo' ? 'face2Button' :
@@ -324,6 +325,7 @@ function switchModel(newModel){
                          currentFace === 'faceFour' ? 'face4Button' : 'face5Button';
     document.getElementById(faceButtonId).classList.remove('active');
     currentFace = null;
+    faceOwnerModel = null;
   }
 }
 
@@ -370,19 +372,23 @@ function toggleItem(itemName) {
 
 function switchFace(faceName) {
   // Remove current face if exists
-  if (currentFace) {
-    currentModel.remove(faceSprites[currentFace]);
+  if (currentFace && faceSprites[currentFace] && faceOwnerModel) {
+    faceOwnerModel.remove(faceSprites[currentFace]);
     document.getElementById(currentFace === 'faceOne' ? 'face1Button' :
                             currentFace === 'faceTwo' ? 'face2Button' :
                             currentFace === 'faceThree' ? 'face3Button' :
                             currentFace === 'faceFour' ? 'face4Button' : 'face5Button')
       .classList.remove('active');
+    currentFace = null;
+    faceOwnerModel = null;
   }
 
   // Add new face (parent to animal so it rotates with it)
   if (faceSprites[faceName]) {
+    console.log('Adding face:', faceName);
     currentModel.add(faceSprites[faceName]);
     currentFace = faceName;
+    faceOwnerModel = currentModel;
 
     // Add active class to button
     const buttonId = faceName === 'faceOne' ? 'face1Button' :
@@ -390,6 +396,8 @@ function switchFace(faceName) {
                      faceName === 'faceThree' ? 'face3Button' :
                      faceName === 'faceFour' ? 'face4Button' : 'face5Button';
     document.getElementById(buttonId).classList.add('active');
+  } else {
+    console.warn('Face sprite not found:', faceName);
   }
 }
 
