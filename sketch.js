@@ -253,6 +253,18 @@ function switchModel(newModel){
   else if (newModel === monkeyModel) document.getElementById("monkeyButton").classList.add('active');
   else if (newModel === flamingoModel) document.getElementById("flamingoButton").classList.add('active');
   else if (newModel === lionModel) document.getElementById("lionButton").classList.add('active');
+
+  // Toggle off all items
+  if (activeItems['mace']) {
+    scene.remove(maceModel);
+    activeItems['mace'] = false;
+    document.getElementById("maceButton").classList.remove('active');
+  }
+  if (activeItems['pepsi']) {
+    scene.remove(pepsiModel);
+    activeItems['pepsi'] = false;
+    document.getElementById("pepsiButton").classList.remove('active');
+  }
 }
 
 function centerModelCamera(model){
