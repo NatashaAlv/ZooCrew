@@ -160,7 +160,7 @@ loader.load('models/animals/lion.glb', (gltf) => {
 
   // Scroll to move camera up/down with limits
   const minCameraY = -1;
-  const maxCameraY = 8;
+  const maxCameraY = 5;
   window.addEventListener('wheel', (event) => {
     event.preventDefault();
     const scrollDirection = event.deltaY > 0 ? 1 : -1;
