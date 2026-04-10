@@ -9,6 +9,7 @@ let baseCameraY = 1;
 let giraffeModel, sharkModel, monkeyModel, flamingoModel;
 let currentModel;
 const initialScales = {};
+const modelScales = {};
 
 let colorPicker;
 let sizeSlider;
@@ -62,7 +63,7 @@ function init(){
 
   giraffeModel = modelGroup;
   giraffeModel.scale.set(0.5,0.5,0.5);
-  giraffeModel.userData.initialScale = 0.5;
+  modelScales['giraffe'] = 0.5;
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
@@ -80,7 +81,7 @@ loader.load('models/animals/shark.glb', (gltf) => {
 
   sharkModel = modelGroup;
   sharkModel.scale.set(0.5,0.5,0.5);
-  sharkModel.userData.initialScale = 0.5;
+  modelScales['shark'] = 0.5;
 }, undefined, (error) => {
   console.error('Error loading shark model:', error);
 });
@@ -95,7 +96,7 @@ loader.load('models/animals/monkeyNew.glb', (gltf) => {
 
   monkeyModel = modelGroup;
   monkeyModel.scale.set(0.5,0.5,0.5);
-  monkeyModel.userData.initialScale = 0.5;
+  modelScales['monkey'] = 0.5;
 }, undefined, (error) => {
   console.error('Error loading monkey model:', error);
 });
@@ -110,7 +111,7 @@ loader.load('models/animals/flamingo.glb', (gltf) => {
 
   flamingoModel = modelGroup;
   flamingoModel.scale.set(0.5,0.5,0.5);
-  flamingoModel.userData.initialScale = 0.5;
+  modelScales['flamingo'] = 0.5;
 }, undefined, (error) => {
   console.error('Error loading flamingo model:', error);
 });
@@ -190,7 +191,13 @@ function animate(){
 
     // Scale (same as slider)
     let size = sizeSlider.value;
-    const initialScale = currentModel.userData.initialScale || 0.5;
+    let initialScale = 0.5;
+
+    if (currentModel === giraffeModel) initialScale = modelScales['giraffe'];
+    else if (currentModel === sharkModel) initialScale = modelScales['shark'];
+    else if (currentModel === monkeyModel) initialScale = modelScales['monkey'];
+    else if (currentModel === flamingoModel) initialScale = modelScales['flamingo'];
+
     currentModel.scale.set(initialScale * size, initialScale * size, initialScale * size);
 
     // Color
