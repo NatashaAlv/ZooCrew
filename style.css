@@ -87,13 +87,15 @@ button{
   padding: 6px 10px;
   margin-right: 5px;
   cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
 }
 
 button.active {
-  background-color: #4CAF50;
-  color: white;
-  font-weight: bold;
-  border: 2px solid #2E7D32;
+  background-color: #4CAF50 !important;
+  color: white !important;
+  font-weight: bold !important;
+  border: 2px solid #2E7D32 !important;
 }
 
 #title{

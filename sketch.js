@@ -179,6 +179,8 @@ loader.load('models/animals/lion.glb', (gltf) => {
 function switchModel(newModel){
   if (!newModel) return;
 
+  console.log('Switching model...');
+
   if (currentModel){
     scene.remove(currentModel);
   }
@@ -196,7 +198,10 @@ function switchModel(newModel){
   });
 
   // Add active class to the appropriate button
-  if (newModel === giraffeModel) document.getElementById("giraffeButton").classList.add('active');
+  if (newModel === giraffeModel) {
+    console.log('Setting giraffe button active');
+    document.getElementById("giraffeButton").classList.add('active');
+  }
   else if (newModel === sharkModel) document.getElementById("sharkButton").classList.add('active');
   else if (newModel === monkeyModel) document.getElementById("monkeyButton").classList.add('active');
   else if (newModel === flamingoModel) document.getElementById("flamingoButton").classList.add('active');
