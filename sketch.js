@@ -16,7 +16,8 @@ const modelScales = {};
 // Item positions relative to each animal
 const itemPositions = {
   mace: {
-    giraffe: { x: -2, y: 0, z: 0 },
+    giraffe: { x: 2, y: 0, z: 0 },
+    
     shark: { x: -2, y: 0, z: 0 },
     monkey: { x: -2, y: 0, z: 0 },
     flamingo: { x: -2, y: 0, z: 0 },
