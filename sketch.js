@@ -113,6 +113,21 @@ loader.load('models/animals/monkey.glb', (gltf) => {
   };
 
   window.addEventListener('resize', onWindowResize);
+
+  // Scroll to move camera up/down with limits
+  const minCameraY = -5;
+  const maxCameraY = 8;
+  window.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    const scrollDirection = event.deltaY > 0 ? 1 : -1;
+    const moveAmount = scrollDirection * 0.3;
+    const newY = camera.position.y + moveAmount;
+
+    if (newY >= minCameraY && newY <= maxCameraY) {
+      camera.position.y = newY;
+      controls.target.y = newY;
+    }
+  }, { passive: false });
 }
 
 // Switch model (same behavior as p5 currentModel)
