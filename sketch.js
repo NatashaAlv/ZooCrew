@@ -192,6 +192,21 @@ loader.load('models/items/pepsi.glb', (gltf) => {
   // Set giraffe as active initially
   document.getElementById("giraffeButton").classList.add('active');
 
+  // Items toggle button
+  document.getElementById("tm").onclick = () => {
+    const container = document.getElementById("itemsContainer");
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+  };
+
+  // Item buttons
+  document.getElementById("maceButton").onclick = () => {
+    toggleItem('mace');
+  };
+
+  document.getElementById("pepsiButton").onclick = () => {
+    toggleItem('pepsi');
+  };
+
   window.addEventListener('resize', onWindowResize);
 
   // Scroll to move camera up/down with limits
