@@ -67,6 +67,7 @@ function init(){
   currentModel = giraffeModel;
   scene.add(giraffeModel);
   centerModelCamera(giraffeModel);
+  document.getElementById("giraffeButton").classList.add('active');
 }, undefined, (error) => {
   console.error('Error loading giraffe model:', error);
 });
@@ -188,6 +189,18 @@ function switchModel(newModel){
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
   sizeSlider.value = 1;
+
+  // Remove active class from all buttons
+  document.querySelectorAll('button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Add active class to the appropriate button
+  if (newModel === giraffeModel) document.getElementById("giraffeButton").classList.add('active');
+  else if (newModel === sharkModel) document.getElementById("sharkButton").classList.add('active');
+  else if (newModel === monkeyModel) document.getElementById("monkeyButton").classList.add('active');
+  else if (newModel === flamingoModel) document.getElementById("flamingoButton").classList.add('active');
+  else if (newModel === lionModel) document.getElementById("lionButton").classList.add('active');
 }
 
 function centerModelCamera(model){
