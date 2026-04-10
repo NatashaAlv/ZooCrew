@@ -268,6 +268,25 @@ function centerModelCamera(model){
   controls.update();
 }
 
+function toggleItem(itemName) {
+  const item = itemName === 'mace' ? maceModel : pepsiModel;
+  const button = itemName === 'mace' ? document.getElementById("maceButton") : document.getElementById("pepsiButton");
+
+  if (!item) return;
+
+  if (activeItems[itemName]) {
+    // Remove item from scene
+    scene.remove(item);
+    activeItems[itemName] = false;
+    button.classList.remove('active');
+  } else {
+    // Add item to scene
+    scene.add(item);
+    activeItems[itemName] = true;
+    button.classList.add('active');
+  }
+}
+
 function animate(){
   requestAnimationFrame(animate);
 
