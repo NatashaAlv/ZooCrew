@@ -36,6 +36,7 @@ function init(){
 
   // Controls (orbit like p5)
   controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;
 
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
