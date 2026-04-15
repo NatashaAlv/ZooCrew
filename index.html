@@ -23,7 +23,7 @@
   <header>
     <div class="container" id="anml">
       <nav>
-        <div id="title">Zoo Crew</div>
+        <div id="label">Animal</div>
         
         <button id="giraffeButton">Giraffe</button>
         <button id="sharkButton">Shark</button>
@@ -36,14 +36,17 @@
 
   <section>
     <div class="container" id="left">
+      <div id="title">Zoo Crew</div>
+      <div id="subtitle">Character Creator</div>
+
       <div id="base">
-        <div id="subtitle">Colour</div>
+        <button class="tab" id="clr">Color</button>
         
         <input type="color" id="furColor" value="#00ffff">
       </div>
 
       <div id="tms">
-        <div id="subtitle">Items</div>
+        <button class="tab" id="tm">Items</button>
 
         <div id="itemsContainer">
           <button id="maceButton">Mace</button>
@@ -52,7 +55,7 @@
       </div>
 
       <div id="accssr">
-        <div id="subtitle">Faces</div>
+        <button class="tab" id="fc">Face</button>
         <div id="facesContainer">
           <button id="face1Button">Face 1</button>
           <button id="face2Button">Face 2</button>
@@ -67,7 +70,7 @@
 
   <footer>
     <div class="container" id="scale">
-      <div id="label">Scale</div>
+      <div id="label">Size</div>
 
       <input type="range" id="sizeSlider" min="0.5" max="3" step="0.1" value="1">
     </div>
