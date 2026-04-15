@@ -63,6 +63,7 @@ section{
 #left{
   height: 100%;
   width: 180px;
+  box-sizing: border-box;
 }
 
 
