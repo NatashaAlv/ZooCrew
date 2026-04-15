@@ -58,12 +58,15 @@ section{
   top: 20px;
   left: 20px;
   bottom: 20px;
+  height: calc(100vh - 40px);
 }
 
 #left{
   height: 100%;
+  max-height: calc(100vh - 40px);
   width: 180px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 
