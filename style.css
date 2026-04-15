@@ -27,6 +27,11 @@ body {
   color: white;
 }
 
+h2,
+#label {
+  font-family: "Joti One", serif;
+}
+
 /* General container style */
 .container{
   background: #042513;
@@ -101,6 +106,7 @@ button.active {
 }
 
 #title{
+  font-family: "Kablammo", system-ui;
   font-weight: bold;
   margin-bottom: 15px;
 }
