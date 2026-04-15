@@ -85,6 +85,7 @@ button.active {
 
 #title{
   font-family: "Kablammo", system-ui;
+  font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -92,7 +93,7 @@ button.active {
 .subheadings{
   margin: 0 0 10px 0;
   display: block;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
 }
