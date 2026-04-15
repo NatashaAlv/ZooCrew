@@ -93,7 +93,7 @@ button{
 }
 
 button.active {
-  background-color: #4CAF50 !important;
+  background-color: #2A9134 !important;
   color: white !important;
   font-weight: bold !important;
   border: 2px solid #2E7D32 !important;
