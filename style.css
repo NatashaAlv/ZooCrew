@@ -60,20 +60,20 @@ footer{
 }
 
 #scale{
-  display: grid;
-  grid-template-rows: auto auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
   gap: 8px;
 }
 
-#scale #label {
-  grid-row: 1;
-  display: block;
+#sizeLabel {
+  order: 1;
+  margin: 0;
   text-align: center;
 }
 
 #sizeSlider {
-  grid-row: 2;
+  order: 2;
 }
 
 
