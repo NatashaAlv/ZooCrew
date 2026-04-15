@@ -61,8 +61,13 @@ footer{
 
 #scale{
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+}
+
+#scale #label {
+  text-align: center;
 }
 
 
@@ -89,6 +94,7 @@ h1#title{
   font-weight: bold;
   line-height: 1;
   margin: 0 0 18px 0;
+  text-align: center;
 }
 
 h2.subheadings{
