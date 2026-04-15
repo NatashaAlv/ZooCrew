@@ -233,12 +233,6 @@ faceNames.forEach((faceName, index) => {
   // Set giraffe as active initially
   document.getElementById("giraffeButton").classList.add('active');
 
-  // Items toggle button
-  document.getElementById("tm").onclick = () => {
-    const container = document.getElementById("itemsContainer");
-    container.style.display = container.style.display === 'none' ? 'block' : 'none';
-  };
-
   // Item buttons
   document.getElementById("maceButton").onclick = () => {
     toggleItem('mace');
