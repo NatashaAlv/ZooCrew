@@ -7,6 +7,7 @@ let loader;
 let baseCameraY = 1;
 const minCameraY = -3;
 const maxCameraY = 8;
+let scrollPosition = baseCameraY;
 
 let giraffeModel, sharkModel, monkeyModel, flamingoModel, lionModel;
 let currentModel;
@@ -260,13 +261,24 @@ faceNames.forEach((faceName, index) => {
     event.preventDefault();
     const scrollDirection = event.deltaY > 0 ? 1 : -1;
     const moveAmount = scrollDirection * 0.3;
-    const newY = camera.position.y + moveAmount;
+    const nextScrollPosition = THREE.MathUtils.clamp(scrollPosition + moveAmount, minCameraY, maxCameraY);
+    const scrollDelta = nextScrollPosition - scrollPosition;
+    scrollPosition = nextScrollPosition;
 
-    if (newY >= minCameraY && newY <= maxCameraY) {
-      camera.position.y = newY;
-      controls.target.y = newY;
-      updateScrollIndicator();
+    const panDirection = new THREE.Vector3();
+    const forward = new THREE.Vector3();
+    camera.getWorldDirection(forward);
+    panDirection.copy(camera.up).projectOnPlane(forward);
+
+    if (panDirection.lengthSq() < 1e-6) {
+      panDirection.set(0, 1, 0);
+    } else {
+      panDirection.normalize();
     }
+
+    camera.position.addScaledVector(panDirection, scrollDelta);
+    controls.target.addScaledVector(panDirection, scrollDelta);
+    updateScrollIndicator();
   }, { passive: false });
 
   updateScrollIndicator();
@@ -285,6 +297,7 @@ function switchModel(newModel){
   centerModelCamera(currentModel);
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
+  scrollPosition = baseCameraY;
   sizeSlider.value = 1;
   updateScrollIndicator();
 
@@ -346,8 +359,7 @@ function updateScrollIndicator() {
   if (!scrollIndicatorThumb) return;
 
   const range = maxCameraY - minCameraY;
-  const clampedY = Math.min(Math.max(camera.position.y, minCameraY), maxCameraY);
-  const ratio = range === 0 ? 0 : (clampedY - minCameraY) / range;
+  const ratio = range === 0 ? 0 : (scrollPosition - minCameraY) / range;
   const track = scrollIndicatorThumb.parentElement;
   const thumbHeight = scrollIndicatorThumb.offsetHeight || 24;
   const trackHeight = track ? track.clientHeight : 180;
