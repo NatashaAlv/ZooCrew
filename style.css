@@ -113,7 +113,7 @@ footer{
   margin-top: -5px;
   background: #f6fff8;
   border: 2px solid #2E7D32;
-  box-shadow: -180px 0 0 180px #B5E48C, 0 0 0 3px rgba(42, 145, 52, 0.25);
+  box-shadow: -110px 0 0 110px #B5E48C, 0 0 0 3px rgba(42, 145, 52, 0.25);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -126,7 +126,7 @@ footer{
 }
 
 #sizeSlider:focus-visible::-webkit-slider-thumb {
-  box-shadow: -180px 0 0 180px #B5E48C, 0 0 0 5px rgba(95, 208, 104, 0.38);
+  box-shadow: -110px 0 0 110px #B5E48C, 0 0 0 5px rgba(95, 208, 104, 0.38);
 }
 
 #sizeSlider::-moz-range-track {
