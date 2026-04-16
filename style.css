@@ -96,9 +96,41 @@ section{
 
 #left{
   height: calc(100dvh - 40px);
-  width: 180px;
+  width: fit-content;
+  min-width: 0;
   box-sizing: border-box;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#base,
+#tms,
+#accssr{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#base,
+#tms{
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#base {
+  align-items: center;
+}
+
+#tms,
+#accssr {
+  align-items: center;
+}
+
+#itemsContainer,
+#facesContainer {
+  justify-content: center;
 }
 
 
