@@ -100,15 +100,9 @@ section{
   min-width: 0;
   box-sizing: border-box;
   overflow-y: auto;
-  overflow-x: hidden;
-}
-
-#leftContent{
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transform-origin: top left;
-  will-change: transform;
+  gap: 14px;
 }
 
 #base,
@@ -116,12 +110,12 @@ section{
 #accssr{
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 #base,
 #tms{
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -140,7 +134,6 @@ section{
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 6px;
 }
 
 
@@ -329,9 +322,9 @@ button{
 }
 
 .assetButton{
-  width: 80px;
-  min-height: 96px;
-  padding: 7px 5px 5px;
+  width: 86px;
+  min-height: 104px;
+  padding: 8px 6px 6px;
   margin-right: 0;
   display: flex;
   flex-direction: column;
@@ -355,8 +348,8 @@ button{
 }
 
 .assetPreview{
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   display: block;
   border-radius: 12px;
   background-color: #f6fff8;
@@ -369,7 +362,7 @@ button{
 
 .assetLabel{
   font-family: "Joti One", serif;
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   line-height: 1;
   text-align: center;
   color: #16321a;
