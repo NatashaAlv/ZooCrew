@@ -47,6 +47,13 @@ header{
   gap: 8px;
 }
 
+#itemsContainer,
+#facesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 
 /* ---------- LEFT SECTION ---------- */
 /* Left sidebar that fills height */
@@ -246,6 +253,102 @@ button{
 
 .animalButton.active .animalLabel{
   color: #16321a !important;
+}
+
+.assetButton{
+  width: 86px;
+  min-height: 104px;
+  padding: 8px 6px 6px;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  background: linear-gradient(180deg, #f8fbf8 0%, #eef5ee 100%);
+  border: 2px solid rgba(42, 145, 52, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.assetButton:hover{
+  transform: translateY(-1px);
+}
+
+.assetButton.active {
+  background: linear-gradient(180deg, #dff6e1 0%, #c8f0cc 100%) !important;
+  color: #16321a !important;
+  border: 2px solid #2E7D32 !important;
+}
+
+.assetPreview{
+  width: 58px;
+  height: 58px;
+  display: block;
+  border-radius: 12px;
+  background-color: #f6fff8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 46px 46px;
+  border: 1px solid rgba(46, 125, 50, 0.15);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.assetLabel{
+  font-family: "Joti One", serif;
+  font-size: 0.92rem;
+  line-height: 1;
+  text-align: center;
+  color: #16321a;
+}
+
+.assetButton.active .assetLabel{
+  color: #16321a !important;
+}
+
+.itemButton .assetPreview{
+  background-size: 40px 40px;
+}
+
+.macePreview{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23F7F3EC'/%3E%3Cpath d='M17 47l20-20 10 10-20 20-12 3 2-13Z' fill='%237E4F2A'/%3E%3Cpath d='M40 24l6-6 4 4-6 6z' fill='%235C3A1E'/%3E%3Ccircle cx='26' cy='38' r='3' fill='%23B68A52'/%3E%3Ccircle cx='31' cy='33' r='3' fill='%23B68A52'/%3E%3Ccircle cx='36' cy='28' r='3' fill='%23B68A52'/%3E%3Cpath d='M15 49l8-2-1 8z' fill='%23D0A06A'/%3E%3C/svg%3E");
+}
+
+.pepsiPreview{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23EEF6FF'/%3E%3Cpath d='M26 12h12l2 6v30c0 5-4 8-8 8s-8-3-8-8V18l2-6Z' fill='%23E53935'/%3E%3Cpath d='M28 18h8v28h-8z' fill='%23FFFFFF'/%3E%3Cpath d='M24 18c4-3 12-3 16 0' stroke='%232D5B9B' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M24 48c4 3 12 3 16 0' stroke='%232D5B9B' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.faceButton{
+  width: 74px;
+  min-height: 96px;
+  padding-inline: 5px;
+}
+
+.facePreview{
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  background-size: cover;
+}
+
+.faceOnePreview{
+  background-image: url("models/faces/faceOne.png");
+}
+
+.faceTwoPreview{
+  background-image: url("models/faces/faceTwo.png");
+}
+
+.faceThreePreview{
+  background-image: url("models/faces/faceThree.png");
+}
+
+.faceFourPreview{
+  background-image: url("models/faces/faceFour.png");
+}
+
+.faceFivePreview{
+  background-image: url("models/faces/faceFive.png");
 }
 
 .giraffePreview{
