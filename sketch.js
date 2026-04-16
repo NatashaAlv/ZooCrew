@@ -40,6 +40,7 @@ const itemPositions = {
 let colorPicker;
 let sizeSlider;
 let scrollIndicatorThumb;
+let leftContent;
 
 init();
 animate();
@@ -212,6 +213,7 @@ faceNames.forEach((faceName, index) => {
   colorPicker = document.getElementById("furColor");
   sizeSlider = document.getElementById("sizeSlider");
   scrollIndicatorThumb = document.getElementById("scrollIndicatorThumb");
+  leftContent = document.getElementById("leftContent");
 
   // Buttons
   document.getElementById("giraffeButton").onclick = () => {
@@ -270,6 +272,7 @@ faceNames.forEach((faceName, index) => {
   }, { passive: false });
 
   updateScrollIndicator();
+  fitLeftPanel();
 }
 
 // Switch model (same behavior as p5 currentModel)
@@ -353,6 +356,23 @@ function updateScrollIndicator() {
   const trackHeight = track ? track.clientHeight : 180;
   const thumbTravel = Math.max(trackHeight - thumbHeight, 0);
   scrollIndicatorThumb.style.top = `${ratio * thumbTravel}px`;
+}
+
+function fitLeftPanel() {
+  if (!leftContent) return;
+
+  leftContent.style.transform = 'none';
+
+  const leftPanel = document.getElementById('left');
+  if (!leftPanel) return;
+
+  const availableHeight = window.innerHeight - 40;
+  const contentHeight = leftContent.scrollHeight;
+  const contentWidth = leftContent.scrollWidth;
+  const scale = contentHeight > 0 ? Math.min(1, availableHeight / contentHeight) : 1;
+
+  leftContent.style.transform = `scale(${scale})`;
+  leftPanel.style.width = `${Math.ceil(contentWidth * scale)}px`;
 }
 
 function toggleItem(itemName) {
@@ -470,4 +490,5 @@ function onWindowResize(){
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   updateScrollIndicator();
+  fitLeftPanel();
 }
