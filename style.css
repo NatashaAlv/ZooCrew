@@ -73,6 +73,37 @@ footer{
   transform: translateX(-50%);
 }
 
+#scrollIndicator{
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#scrollIndicatorTrack{
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+#scrollIndicatorThumb{
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 24px;
+  border-radius: 999px;
+  background: #f6fff8;
+  border: 2px solid #2E7D32;
+  box-shadow: 0 0 0 2px rgba(42, 145, 52, 0.2);
+  transform: translateX(-50%);
+}
+
 #scale{
   display: flex;
   flex-direction: column !important;

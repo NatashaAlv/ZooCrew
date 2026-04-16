@@ -5,6 +5,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 let scene, camera, renderer, controls;
 let loader;
 let baseCameraY = 1;
+const minCameraY = -3;
+const maxCameraY = 8;
 
 let giraffeModel, sharkModel, monkeyModel, flamingoModel, lionModel;
 let currentModel;
@@ -37,6 +39,7 @@ const itemPositions = {
 
 let colorPicker;
 let sizeSlider;
+let scrollIndicatorThumb;
 
 init();
 animate();
@@ -208,6 +211,7 @@ faceNames.forEach((faceName, index) => {
   // UI elements
   colorPicker = document.getElementById("furColor");
   sizeSlider = document.getElementById("sizeSlider");
+  scrollIndicatorThumb = document.getElementById("scrollIndicatorThumb");
 
   // Buttons
   document.getElementById("giraffeButton").onclick = () => {
@@ -252,8 +256,6 @@ faceNames.forEach((faceName, index) => {
   window.addEventListener('resize', onWindowResize);
 
   // Scroll to move camera up/down with limits
-  const minCameraY = -3;
-  const maxCameraY = 8;
   window.addEventListener('wheel', (event) => {
     event.preventDefault();
     const scrollDirection = event.deltaY > 0 ? 1 : -1;
@@ -263,8 +265,11 @@ faceNames.forEach((faceName, index) => {
     if (newY >= minCameraY && newY <= maxCameraY) {
       camera.position.y = newY;
       controls.target.y = newY;
+      updateScrollIndicator();
     }
   }, { passive: false });
+
+  updateScrollIndicator();
 }
 
 // Switch model (same behavior as p5 currentModel)
@@ -281,6 +286,7 @@ function switchModel(newModel){
   camera.position.y = baseCameraY;
   controls.target.y = baseCameraY;
   sizeSlider.value = 1;
+  updateScrollIndicator();
 
   // Remove active class from all buttons
   document.querySelectorAll('button').forEach(btn => {
@@ -334,6 +340,19 @@ function centerModelCamera(model){
   camera.position.set(center.x, baseCameraY, center.z + cameraZ);
   controls.target.set(center.x, baseCameraY, center.z);
   controls.update();
+}
+
+function updateScrollIndicator() {
+  if (!scrollIndicatorThumb) return;
+
+  const range = maxCameraY - minCameraY;
+  const clampedY = Math.min(Math.max(camera.position.y, minCameraY), maxCameraY);
+  const ratio = range === 0 ? 0 : (clampedY - minCameraY) / range;
+  const track = scrollIndicatorThumb.parentElement;
+  const thumbHeight = scrollIndicatorThumb.offsetHeight || 24;
+  const trackHeight = track ? track.clientHeight : 180;
+  const thumbTravel = Math.max(trackHeight - thumbHeight, 0);
+  scrollIndicatorThumb.style.top = `${ratio * thumbTravel}px`;
 }
 
 function toggleItem(itemName) {
@@ -450,4 +469,5 @@ function onWindowResize(){
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  updateScrollIndicator();
 }
