@@ -100,9 +100,27 @@ section{
   min-width: 0;
   box-sizing: border-box;
   overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#left::-webkit-scrollbar {
+  width: 8px;
+}
+
+#left::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+#left::-webkit-scrollbar-thumb {
+  background: rgba(181, 228, 140, 0.85);
+  border-radius: 999px;
 }
 
 #base,
