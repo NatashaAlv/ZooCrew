@@ -466,3 +466,162 @@ h2.subheadings{
   font-weight: 700;
   line-height: 1.2;
 }
+
+@media (max-width: 1200px) {
+  h1#title {
+    font-size: 3.2rem !important;
+    margin-bottom: 12px;
+  }
+
+  .animalButton {
+    width: 74px;
+    min-height: 90px;
+    padding: 7px 5px 5px;
+    gap: 5px;
+  }
+
+  .animalPreview {
+    width: 50px;
+    height: 50px;
+    background-size: 40px 40px;
+  }
+
+  .animalLabel {
+    font-size: 0.82rem;
+  }
+
+  section {
+    top: 182px;
+  }
+
+  #left {
+    height: calc(100dvh - 274px);
+  }
+}
+
+@media (max-width: 900px) {
+  #anml {
+    max-width: calc(100vw - 24px);
+  }
+
+  #animalButtons {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: calc(100vw - 44px);
+    padding-bottom: 4px;
+  }
+
+  #animalButtons::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #animalButtons::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+  }
+
+  section {
+    top: 156px;
+    left: 12px;
+  }
+
+  #left {
+    width: min(170px, calc(100vw - 24px));
+    height: calc(100dvh - 246px);
+  }
+
+  footer {
+    left: auto;
+    right: 12px;
+    transform: none;
+    bottom: 12px;
+  }
+
+  #scale {
+    align-items: flex-end;
+  }
+
+  #sizeSlider {
+    width: 140px;
+  }
+
+  #scrollIndicator {
+    display: none;
+  }
+}
+
+@media (max-width: 700px), (max-height: 760px) {
+  header {
+    top: 12px;
+  }
+
+  h1#title {
+    font-size: 2.5rem !important;
+    margin-bottom: 8px;
+  }
+
+  .animalButton {
+    width: 62px;
+    min-height: 76px;
+    border-radius: 10px;
+  }
+
+  .animalPreview {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-size: 32px 32px;
+  }
+
+  .animalLabel {
+    font-size: 0.72rem;
+  }
+
+  section {
+    top: 132px;
+  }
+
+  #left {
+    height: calc(100dvh - 206px);
+    padding: 10px;
+    gap: 8px;
+  }
+
+  #left .subheadings {
+    font-size: 1.2rem !important;
+    margin-bottom: 4px;
+  }
+
+  #furColor {
+    width: 62px;
+    height: 62px;
+  }
+
+  .assetButton {
+    width: 66px;
+    min-height: 78px;
+    padding: 5px 4px 4px;
+    border-radius: 10px;
+  }
+
+  .assetPreview {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-size: 32px 32px;
+  }
+
+  .assetLabel {
+    font-size: 0.72rem;
+  }
+
+  .faceButton {
+    width: 58px;
+    min-height: 70px;
+  }
+
+  .facePreview {
+    width: 34px;
+    height: 34px;
+  }
+}
