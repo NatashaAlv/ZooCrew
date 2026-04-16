@@ -47,6 +47,37 @@ header{
   gap: 8px;
 }
 
+#furColor{
+  width: 86px;
+  height: 86px;
+  padding: 0;
+  border: 2px solid rgba(42, 145, 52, 0.35);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f8fbf8 0%, #eef5ee 100%);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#furColor::-webkit-color-swatch-wrapper{
+  padding: 6px;
+}
+
+#furColor::-webkit-color-swatch{
+  border: none;
+  border-radius: 10px;
+}
+
+#furColor::-moz-color-swatch{
+  border: none;
+  border-radius: 10px;
+}
+
+#furColor:hover{
+  transform: translateY(-1px);
+}
+
 #itemsContainer,
 #facesContainer {
   display: flex;
